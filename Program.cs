@@ -1,4 +1,9 @@
-﻿namespace labo2
+﻿
+
+
+namespace labo2
+
+
 {
     internal class Program
     {

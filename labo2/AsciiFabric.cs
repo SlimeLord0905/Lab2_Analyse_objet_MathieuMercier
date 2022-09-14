@@ -1,6 +1,6 @@
 ﻿namespace labo2
 {
-    public class Fabric
+    public class AsciiFabric : Fabric
     {
         
     }

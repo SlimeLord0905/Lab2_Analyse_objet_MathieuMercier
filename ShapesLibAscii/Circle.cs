@@ -1,6 +1,6 @@
 using SixLabors.ImageSharp;
 
-namespace ShapeslibAscii;
+namespace ShapesLibAscii;
 
 public class Circle : ShapeAscii
 {

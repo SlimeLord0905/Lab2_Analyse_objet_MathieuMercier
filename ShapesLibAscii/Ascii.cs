@@ -1,8 +1,7 @@
 ﻿using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace ShapeslibAscii
+namespace ShapesLibAscii
 {
     public class Ascii
     {
