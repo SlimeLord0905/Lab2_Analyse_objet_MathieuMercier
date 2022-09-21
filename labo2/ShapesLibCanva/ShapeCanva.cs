@@ -1,12 +1,9 @@
 using SixLabors.ImageSharp;
-using labo2;
 
 namespace labo2.ShapesLibCanva;
 
-public abstract class ShapeCanva 
+public abstract class ShapeCanva : Shape
 {
-    public static Color DefaultDrawColor { get; set; } = Color.Black;
-    public Color DrawColor { get; set; }
 
     protected ShapeCanva(Color drawColor)
     {
@@ -17,5 +14,4 @@ public abstract class ShapeCanva
     {
     }
 
-    public abstract void Draw(Canvas canvas);
 }

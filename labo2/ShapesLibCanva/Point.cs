@@ -55,8 +55,9 @@ public class Point : ShapeCanva
     {
     }
     
-    public override void Draw(Canvas canvas)
+    public override void Draw(Document doc)
     {
+        Canvas canvas = doc.CurentCanva;
         canvas.SetPixel(X, Y, DrawColor);
     }
 }

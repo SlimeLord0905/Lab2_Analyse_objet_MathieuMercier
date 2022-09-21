@@ -1,8 +1,8 @@
 using SixLabors.ImageSharp;
 
-namespace labo2.ShapesLibCanva;
+namespace labo2.ShapesLibAscii;
 
-public class Polygon : ShapeCanva
+public class Polygon : ShapeAscii
 {
     public List<Point> Vertices { get; set; }
 
@@ -29,16 +29,10 @@ public class Polygon : ShapeCanva
     {
     }
 
-    public override void Draw(Canvas canvas)
+    public override void Draw(Document doc)
     {
-        // ligne entre le premier point et le dernier point
-        Line line = new Line(Vertices[0], Vertices[Vertices.Count - 1], DrawColor);
-        line.Draw(canvas);
-        for (int i = 1; i < Vertices.Count; i++)
-        {
-            line.Start = Vertices[i - 1];
-            line.End = Vertices[i];
-            line.Draw(canvas);
-        }
+        throw new Exception("ascii not implemented");
+
+        
     }
 }

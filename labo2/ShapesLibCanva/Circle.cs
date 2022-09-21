@@ -16,8 +16,9 @@ public class Circle : ShapeCanva
         DrawColor = drawColor;
     }
 
-    public override void Draw(Canvas canvas)
+    public override void Draw(Document doc)
     {
+        Canvas canvas = doc.CurentCanva;
         int cos45 = Convert.ToInt32(Math.Round(Radius * Math.Cos(Math.PI/4), MidpointRounding.AwayFromZero));
         
         for (int i = 0; i <= cos45; i++)

@@ -1,6 +1,6 @@
 using SixLabors.ImageSharp;
 
-namespace labo2.ShapesLibCanva;
+namespace labo2.ShapesLibAscii;
 
 public class HLine : Line
 {

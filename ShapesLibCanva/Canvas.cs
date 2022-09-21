@@ -2,7 +2,7 @@
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace ShapesLibCanva
+namespace labo2.ShapesLibCanva
 {
     public class Canvas
     {

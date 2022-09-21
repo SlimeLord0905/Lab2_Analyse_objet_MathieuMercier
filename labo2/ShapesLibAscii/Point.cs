@@ -1,8 +1,8 @@
 using SixLabors.ImageSharp;
 
-namespace labo2.ShapesLibCanva;
+namespace labo2.ShapesLibAscii;
 
-public class Point : ShapeCanva
+public class Point : ShapeAscii
 {
     private int _x;
     private int _y;
@@ -55,8 +55,8 @@ public class Point : ShapeCanva
     {
     }
     
-    public override void Draw(Canvas canvas)
+    public override void Draw(Document doc)
     {
-        canvas.SetPixel(X, Y, DrawColor);
+        throw new Exception("ascii not implemented");
     }
 }

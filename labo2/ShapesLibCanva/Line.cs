@@ -23,8 +23,9 @@ public class Line : ShapeCanva
     {
     }
 
-    public override void Draw(Canvas canvas)
+    public override void Draw(Document doc)
     {
+        Canvas canvas = doc.CurentCanva;
         // ligne verticale, il faut éviter une division par 0
         if (Start.X == End.X)
         {

@@ -8,11 +8,8 @@
   
     `!pragma layout smetana`
 
-### Diagramme de classes V1
 
-[plantuml.com](https://www.plantuml.com/plantuml/uml/ZPBFRjmW4CRlF0NQarqtKl_SgXnIRGwfj8SgMxdjaU396jMBNHYdKhVxxiLCPec58_bW6BvlO7w6kV6e78x7JlXVnWxAgQFKdVB-Cw8p3oF25ztRlVaByfrG3nwTqaWPSj-g0UH9I7aAfw3HPrdTmgCQExnrwi-sxtedFyauXwHgKOo756KAepEjJrpkJ5kBhR9FofTXzrDl6d4MWZY-ziPYvAX-13Cifl3dSrX5kmZVssbTpeGuK4NMurYAnPBL3km1swAaimC2tS7rlwihmc2ckvsn49YgxwR1bb6YIXK89fSOXvquBkFCoyT4GNUnUR-Hrq7RlDcG7dR4XsQycl7km1nQPBuwuyiavcEdNijNly9NB_4ntilYz32vnaXihGLwoVCXyJpZW6s6oVECzCqPPGzTnE9uXi64kRq8cx8uM0FDkGp-CO6pDUq3XqR3XVqUD9ANTUJi_IzvJ9uQ8VVoZaWf7AtvfqINTqVomivn6C3juF7I9VlVetBvFv4yQ-EaPTHiqRI6bp9pM38MIRV6QRhzUzMOqJCgwNDKrd9KjcXQWqgPEIeP4we6Y-343TXcF7R_0G00)
 
-![
 
 ### Diagramme de classe V4
 
@@ -23,12 +20,111 @@
 ````plantuml
 @startuml
 
-namespace ShapesLibCanva{
+namespace labo2{
+
+Abstract class Shape{
+  {static} +DefaultDrawColor : Color
+  +DrawColor : Color
+  +Shape()
+  +Shape(Color)
+}
+
+Document "1" --> "0..*"Shape
+
+Abstract class Factory{
+  +AddLine():void
+  +AddCircle():void
+  +addHline():void
+  +addVline():void
+  +addRectangle():void
+  +addTriangle():void
+  +SaveFile(Document):Document
+
+}
+Factory <|-- CanvaFactory
+class CanvaFactory{
+}
+
+Factory <|-- AsciiFactory
+class AsciiFactory{
+}
+
+
+abstract class Document {
+  +DefaultWidth: int
+  +DefaultHeight: int 
+  +DefaultBackground: Color
+  +Width : int
+  +Height : int
+  +Background : Color
+  
+}
+
+
+Document <|-- CanvasDoc
+Document <|-- AsciiDoc
+
+class CanvasDoc{
++currentDoc : Canvas
+}
+class AsciiDoc{
++currentDoc : Ascii
+}
+
+CanvasDoc --> labo2.ShapesLibCanva.Canva
+AsciiDoc --> labo2.ShapesLibAscii.Ascii
+
+abstract class Application {
+   +{abstract} CreateDocument() : Document
+  +{abstract} CreateFactory() : Factory
+}
+Document "*" <-o "*" Application :docs  
+
+class CanvasApp {
+   +CreateDocument() : Document
+   +CreateFactory() : Factory
+}
+Application <|-- CanvasApp
+labo2.ShapesLibCanva.Canva <. CanvasApp
+CanvaFactory <. CanvasApp
+
+class AsciiApp {
+   +CreateDocument() : Document
+   +CreateFactory() : Factory
+
+}
+Application <|-- AsciiApp
+labo2.ShapesLibAscii.Ascii <. AsciiApp
+AsciiFactory <. AsciiApp
+
+
+
+
+}
+
+
+
+
+
+namespace labo2.ShapesLibCanva{
 
 skinparam classAttributeIconSize 0
+ 
+ class Canva{
+
+  +Canva()
+  +Canva(int)
+  +Canva(int,int)
+  +Canva(int,int,Color)
+  
+  +Clear(Color) : void
+  +getPixel(int,int) : Color
+  +setPixel(int,int,Color):
+  +Save(string) : void
+}
 
 abstract class ShapeCanva {
-{abstract} +Draw(Canvas) : void
+{abstract} +Draw(Document) : void
 }
 
 class Point {
@@ -37,7 +133,7 @@ class Point {
 +Point(int, int)
 +Point(int, int, Color)
 +Point(Point)
-+Draw(Canvas) : void
++Draw(Document) : void
 +Length() : int
 }
 ShapeCanva <|-- Point
@@ -64,7 +160,7 @@ class Line {
 +Line(Point, Point)
 +Line(Point, Point, Color)
 +Line(Line)
-+Draw(Canvas) : void
++Draw(Document) : void
 }
 ShapeCanva <|-- Line
 
@@ -74,7 +170,7 @@ class Polygon {
 +Polygon(List<Point>)
 +Polygon(List<Point>, Color)
 +Polygon(Polygon)
-+Draw(Canvas) : void
++Draw(Document) : void
 }
 ShapeCanva <|-- Polygon
 Point "3..*" <-o "*" Polygon : vertices
@@ -112,24 +208,27 @@ class Circle {
 +Circle(Point, int)
 +Circle(Point, int, Color)
 +Circle(Circle)
-+Draw(Canvas) : void
++Draw(Document) : void
 }
 ShapeCanva <|-- Circle
 labo2.Shape <|-- ShapeCanva
 
-class Canva{
-  +DefaultWidth: int
-  +DefaultHeight: int 
-  +DefaultBackground: Color
-  +Width : int
-  +Height : int
-  +Background : Color
+
+}
+
+
+
+
+
+namespace labo2.ShapesLibAscii {
+
+class Ascii{
+
   
-  
-  +Canva()
-  +Canva(int)
-  +Canva(int,int)
-  +Canva(int,int,Color)
+  +Ascii()
+  +Ascii(int)
+  +Ascii(int,int)
+  +Ascii(int,int,Color)
   
   +Clear(Color) : void
   +getPixel(int,int) : Color
@@ -137,18 +236,8 @@ class Canva{
   +Save(string) : void
 }
 
-}
-
-
-
-
-
-namespace ShapesLibAscii {
-
-skinparam classAttributeIconSize 0
-
 abstract class ShapeAscii {
-{abstract} +Draw(Ascii) : void
+{abstract} +Draw(Document) : void
 }
 
 class Point {
@@ -157,7 +246,7 @@ class Point {
 +Point(int, int)
 +Point(int, int, Color)
 +Point(Point)
-+Draw(Canvas) : void
++Draw(Document) : void
 +Length() : int
 }
 ShapeAscii <|-- Point
@@ -184,7 +273,7 @@ class Line {
 +Line(Point, Point)
 +Line(Point, Point, Color)
 +Line(Line)
-+Draw(Canvas) : void
++Draw(Document) : void
 }
 ShapeAscii <|-- Line
 
@@ -194,7 +283,7 @@ class Polygon {
 +Polygon(List<Point>)
 +Polygon(List<Point>, Color)
 +Polygon(Polygon)
-+Draw(Canvas) : void
++Draw(Document) : void
 }
 ShapeAscii <|-- Polygon
 Point "3..*" <-o "*" Polygon : vertices
@@ -232,86 +321,14 @@ class Circle {
 +Circle(Point, int)
 +Circle(Point, int, Color)
 +Circle(Circle)
-+Draw(Canvas) : void
++Draw(Document) : void
 }
 ShapeAscii <|-- Circle
 labo2.Shape <|-- ShapeAscii
 
 
-class Ascii{
-  +DefaultWidth: int
-  +DefaultHeight: int 
-  +DefaultBackground: Color
-  +Width : int
-  +Height : int
-  +Background : Color
-  
-  
-  +Ascii()
-  +Ascii(int)
-  +Ascii(int,int)
-  +Ascii(int,int,Color)
-  
-  +Clear(Color) : void
-  +getPixel(int,int) : Color
-  +setPixel(int,int,Color):
-  +Save(string) : void
-}
-}
-
-
-
-
-
-
-namespace labo2{
-
-Abstract class Shape{
-  {static} +DefaultDrawColor : Color
-  +DrawColor : Color
-  +Shape()
-  +Shape(Color)
-}
-
-
-Abstract class Fabric {
-
-  -ArrayList<Shape> CurrentShapes
-  
-  +Fabric(int):void
-  +AddLine():void
-  +AddCircle():void
-  +addHline():void
-  +addVline():void
-  +addRectangle():void
-  +addTriangle():void
-  +SaveFile():void
-}
-Fabric "1" --> "0..*"Shape
-
-class AsciiFabric{
-}
-Fabric <|-- AsciiFabric
-ShapesLibAscii.Ascii --> AsciiFabric
-class CanvaFabric{
-}
-Fabric <|-- CanvaFabric
-ShapesLibCanva.Canva --> CanvaFabric
-
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @enduml

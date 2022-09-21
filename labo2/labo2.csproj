@@ -1,23 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="NETStandard.Library" Version="2.0.3" />
       <PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Include="shapes_class_diagram.md" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\ShapesLibAscii\ShapesLibAscii.csproj" />
-      <ProjectReference Include="..\ShapesLibCanva\ShapesLibCanva.csproj" />
     </ItemGroup>
 
 </Project>

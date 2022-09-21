@@ -1,6 +1,5 @@
 ﻿using SixLabors.ImageSharp;
-
-
+using labo2.ShapesLibAscii;
 namespace labo2
 {
     public abstract class Shape
@@ -16,5 +15,7 @@ namespace labo2
         protected Shape() : this(DefaultDrawColor)
         {
         }
+
+        public abstract void Draw(Document doc);
     }
 }
