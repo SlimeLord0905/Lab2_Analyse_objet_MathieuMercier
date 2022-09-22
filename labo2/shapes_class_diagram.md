@@ -75,7 +75,9 @@ CanvasDoc --> labo2.ShapesLibCanva.Canva
 AsciiDoc --> labo2.ShapesLibAscii.Ascii
 
 abstract class Application {
-   +{abstract} CreateDocument() : Document
+  +CurrentDoc :Document
+  +CurrentFactory : Factory
+  +{abstract} CreateDocument() : Document
   +{abstract} CreateFactory() : Factory
 }
 Document "*" <-o "*" Application :docs  

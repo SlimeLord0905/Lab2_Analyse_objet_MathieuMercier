@@ -31,9 +31,9 @@ public class Program
                 {
                     currentApp.Clear();
                     currentApp.Add(new AsciiApp());
-                }
-                CurrentDoc = currentApp.First().CreateDocument();
-                CurrentFac = currentApp.First().CreateFactory();
+                } 
+                currentApp.First().CreateDocument();
+                currentApp.First().CreateFactory();
             }
             else if (answer == "3")
             {
@@ -60,7 +60,7 @@ public class Program
                         int x1 = int.Parse(Console.ReadLine());
                         Console.WriteLine("y");
                         int y1 = int.Parse(Console.ReadLine());
-                        CurrentFac.First().addPoint(x1,y1);
+                        currentApp.First().CurrentFactory.First().addPoint(x1,y1);
                     }
                     else if (answerEdit == "2")
                     {
