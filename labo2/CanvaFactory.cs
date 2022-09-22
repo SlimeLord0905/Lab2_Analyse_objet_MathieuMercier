@@ -6,6 +6,10 @@ namespace labo2
 {
     public class CanvaFactory : Factory
     {
+        public override void addPoint(int x1, int y1)
+        {
+            shapes.Add(new ShapesLibCanva.Point(x1,y1));
+        }
         public override void addLine(int x1, int y1, int x2, int y2)
         {
             shapes.Add(new ShapesLibCanva.Line(new ShapesLibCanva.Point(x1,x2), new ShapesLibCanva.Point(x2,y2)));
@@ -42,7 +46,7 @@ namespace labo2
             {
                 shape.Draw(document);
             }
-
+            document.CurentCanva.Save("CanvaImage.png");
             return document;
         }
     }

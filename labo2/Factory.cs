@@ -10,6 +10,7 @@ namespace labo2
 
         public List<Shape> shapes { get; set; }
 
+        public abstract void addPoint(int x1, int y1);
 
         public abstract void addLine(int x1, int y1 , int x2 , int y2);
         public abstract void addCircle(int x1, int y1 , int radius);

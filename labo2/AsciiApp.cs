@@ -9,6 +9,8 @@ public class AsciiApp : Application
     {
         List<Document> newDoc = new List<Document>();
         newDoc.Add(new AsciiDoc());
+        CurrentDoc.Clear();
+        CurrentDoc = newDoc;
         return newDoc;
     }
 
@@ -16,6 +18,8 @@ public class AsciiApp : Application
     {
         List<Factory> newFac = new List<Factory>();
         newFac.Add(new AsciiFactory());
+        CurrentFactory.Clear();
+        CurrentFactory = newFac;
         return newFac;
     }
 }

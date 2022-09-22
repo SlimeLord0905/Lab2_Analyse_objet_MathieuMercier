@@ -2,6 +2,10 @@
 {
     public class AsciiFactory : Factory
     {
+        public override void addPoint(int x1, int y1)
+        {
+            throw new NotImplementedException();
+        }
         public override void addLine(int x1, int y1, int x2, int y2)
         {
             throw new NotImplementedException();

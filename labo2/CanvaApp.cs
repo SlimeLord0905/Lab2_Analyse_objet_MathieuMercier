@@ -4,15 +4,15 @@ public class CanvaApp : Application
 {
     public override List<Document> CreateDocument()
     {
-        List<Document> newDoc = new List<Document>();
-        newDoc.Add(new CanvaDoc());
-        return newDoc;
+        CurrentDoc.Clear();
+        CurrentDoc.Add(new CanvaDoc());
+        return CurrentDoc;
     }
 
     public override List<Factory> CreateFactory()
     {
-        List<Factory> newFac = new List<Factory>();
-        newFac.Add(new CanvaFactory());
-        return newFac;
+        CurrentFactory.Clear();
+        CurrentFactory.Add(new CanvaFactory());
+        return CurrentFactory;
     }
 }
